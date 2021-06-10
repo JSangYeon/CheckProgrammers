@@ -27,7 +27,7 @@ public class RemoveMinNumber {
 			}
 		}
 		
-		if(index==0)
+		if(arr.length==1)
 		{
 			int[] answer = {-1};
 			System.out.println(Arrays.toString(answer));
