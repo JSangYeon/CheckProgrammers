@@ -38,5 +38,7 @@ public class RemoveMinNumber {
 			System.out.println(Arrays.toString(answer));
 		}
 	}
+	
+
 
 }
