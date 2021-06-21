@@ -1,7 +1,6 @@
 package level1;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CreateDecimal {
 	    
@@ -24,7 +23,7 @@ public class CreateDecimal {
 		
 	}
 	
-	public static int checkDecimal() { //소수 구하기
+	public static int checkDecimal() { //소수 개수 구하기
 		
 		int cnt = 0;
 		
