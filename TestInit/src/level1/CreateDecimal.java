@@ -1,64 +1,109 @@
 package level1;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class CreateDecimal {
 	    
+
+	static ArrayList<Integer> list = new ArrayList<>();
 	
 	//소수 만들기
 	public static void main(String[] args) {
 		
-		int[] nums = {1,2,3,4};
+		int[] nums = {1,2,7,6,4};
 		
 		int length = nums.length;
 		
-		permutation(nums,0,3);
+		boolean[] visited = new boolean[nums.length];		
 		
+		combination(nums, visited, 0, nums.length, 3);
+		
+		System.out.println(checkDecimal());;
 		
 		
 	}
 	
-	public static boolean checkDecimal(int num) { //소수 구하기
+	public static int checkDecimal() { //소수 구하기
 		
-		boolean isDeciaml = true;
+		int cnt = 0;
 		
-		 // 1은 소수도 합성수도 아니므로 i는 2부터 시작한다.
-        // 2의 경우 반복문이 실행되지 않으므로 defalt값으로 실행된다.
-        for (int i = 2; i < num; i++) {
-            // 1과 num 자신 외에 나누어지는 수가 있는지 검사할 조건문
-            if (num % i == 0) {
-                // 나누어지는 수가 있을 경우 isPrime의 값을 true로 바꾼다.
-            	isDeciaml = false;
-                // 한 번이라도 이 조건문이 실행될 경우 num은 소수가 아니므로 반복문을 빠져나온다.
-                break;
-            }
-        }
-		
-		return isDeciaml;
-	}
-	
-	
-	
-	public static void permutation(int[] nums, int depth, int r) { 
-		
-        if (depth == r) {
-            for (int i = 0; i < r; i++) {
-                System.out.print(nums[i] + "\t");
-            }
-            System.out.println();
-            return;
-        }
+		for(int num : list)
+		{
+			boolean isDecimal = true;
+			for (int i = 2; i <= num/2; i++) {
+	            if (num % i == 0) {
+	            	isDecimal = false;
+	                break;
+	            }
+	        }
+			if(isDecimal)
+			{
+				cnt++;
+			}
+		}
         
+		
+		return cnt;
+	}
+	
+	
+	
 
-        for (int i = 0; i < nums.length; i++) {
-            int tmp = nums[i];
-            nums[depth] = nums[i];
-            nums[i] = tmp;
+	//arr- 배열, output - 조합에 뽑혔는지 체크하는 배열 , n - 배열의 길이, r - 조합의 길이, start - 변수의 기준
+	// 백트래킹 사용
+	// 사용 예시 : combination(arr, visited, 0, n, r)
+	public static void combination(int[] arr, boolean[] visited, int start, int n, int r) {
+		
+	    if(r == 0) {
+	    	list.add(getSum(arr, visited, n));
+	    	return;
+	    } 
 
-            permutation(nums, depth + 1, r);
+	    for(int i=start; i<n; i++) {
+	        visited[i] = true;
+	        combination(arr, visited, i + 1, n, r - 1);
+	        visited[i] = false;
+	    }
+	}
 
-            
-//            //스왑한거 다시 되돌리기
-            nums[i] = nums[depth];
-            nums[depth] = tmp;
-        }
-    }
+	
+	  public static int getSum(int[] arr, boolean[] visited, int n) {
+		  int sum =0;
+		  for (int i = 0; i < n; i++) {
+		      if (visited[i]) {
+		    	  sum+=arr[i];
+		      }
+		  }
+		  
+		  return sum;
+	}
 }
+
+
+
+
+//// 백트래킹 사용
+//// 사용 예시 : combination(arr, visited, 0, n, r)
+//public static void combination(int[] arr, boolean[] visited, int start, int n, int r) {
+//    if(r == 0) {
+//    	System.out.println(print(arr, visited, n));
+//        return;
+//    } 
+//
+//    for(int i=start; i<n; i++) {
+//        visited[i] = true;
+//        combination(arr, visited, i + 1, n, r - 1);
+//        visited[i] = false;
+//    }
+//}
+
+//// 배열 출력
+//public static void print(int[] arr, boolean[] visited, int n) {
+//    for (int i = 0; i < n; i++) {
+//        if (visited[i]) {
+//            System.out.print(arr[i] + " ");
+//        }
+//    }
+//    System.out.println();
+//}
