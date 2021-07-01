@@ -5,9 +5,9 @@ public class FibonacciNumbers {
 	
 	public static void main(String[] args) {
 		
-		int n = 1000000;
+		int n = 8;
 		
-		System.out.println(solution(5));
+		System.out.println(solution(n));
 		
 	}
 	
