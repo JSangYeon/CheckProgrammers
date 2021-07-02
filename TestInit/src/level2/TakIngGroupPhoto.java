@@ -34,7 +34,7 @@ public class TakIngGroupPhoto  {
 		map.put('R', 6);
 		map.put('T', 7);
 		
-		
+
 		
 		int[] output = new int[8];
 
